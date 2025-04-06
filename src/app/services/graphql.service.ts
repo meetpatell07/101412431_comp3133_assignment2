@@ -90,7 +90,6 @@ export class GraphqlService {
     salary: number,
     date_of_joining: string,
     department: string,
-    employee_photo: string
   ): Observable<any> {
     return this.apollo.mutate({
       mutation: gql`
@@ -104,7 +103,6 @@ export class GraphqlService {
             salary: ${salary}
             date_of_joining: "${date_of_joining}"
             department: "${department}"
-            employee_photo: "${employee_photo}"
           ) {
             id
             first_name
@@ -128,6 +126,32 @@ export class GraphqlService {
       `,
     });
   }
+
+  // Inside GraphqlService
+updateEmployee(
+  id: string,
+  designation: string,
+  salary: number
+): Observable<any> {
+  return this.apollo.mutate({
+    mutation: gql`
+      mutation {
+        updateEmployee(
+          id: "${id}"
+          designation: "${designation}"
+          salary: ${salary}
+        ) {
+          first_name
+          last_name
+          email
+          salary
+          designation
+          department
+        }
+      }
+    `,
+  });
+}
 
   
 }

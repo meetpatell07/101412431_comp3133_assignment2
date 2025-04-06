@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GraphqlService } from '../../../services/graphql.service';
+import { CommonModule } from '@angular/common';  // Import CommonModule
+import { ReactiveFormsModule } from '@angular/forms';  // Import ReactiveFormsModule
 
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css']
+  styleUrls: ['./add-employee.component.css'],
+  imports: [CommonModule, ReactiveFormsModule],  // Add these modules here
+
 })
 export class AddEmployeeComponent {
   addEmployeeForm: FormGroup;
@@ -25,7 +29,6 @@ export class AddEmployeeComponent {
       salary: ['', [Validators.required, Validators.min(0)]],
       date_of_joining: ['', Validators.required],
       department: ['', Validators.required],
-      employee_photo: ['', Validators.required]
     });
   }
 
@@ -40,7 +43,6 @@ export class AddEmployeeComponent {
         salary,
         date_of_joining,
         department,
-        employee_photo
       } = this.addEmployeeForm.value;
 
       this.gqlService.addEmployee(
@@ -52,7 +54,6 @@ export class AddEmployeeComponent {
         salary,
         date_of_joining,
         department,
-        employee_photo
       ).subscribe({
         next: (res: any) => {
           console.log('Employee added:', res);
@@ -65,4 +66,9 @@ export class AddEmployeeComponent {
       });
     }
   }
+
+  onGoBack() {
+    this.router.navigate(['/employee-list']);
+  }
+  
 }

@@ -22,9 +22,10 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['/add-employee']);  // Navigate to a form for adding new employee
   }
 
+
   // Method to edit an employee
   editEmployee(employeeId: string) {
-    this.router.navigate(['/employee-detail', employeeId]);  // Navigate to employee detail page
+    this.router.navigate(['/edit-employee', employeeId]);  // Navigate to employee detail page
   }
 
 
@@ -34,13 +35,22 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  viewEmployee(id: string): void {
-    this.router.navigate(['/employee', id]); // Navigate to employee detail page
+  viewEmployee(employeeId: string): void {
+    this.router.navigate(['/employee-detail', employeeId]); // Navigate to employee detail page
   }
 
+  
+  // Method to delete an employee
   deleteEmployee(id: string): void {
-    this.gqlService.deleteEmployee(id).subscribe(() => {
-      this.getEmployees(); // Refresh the list after deletion
-    });
+    const confirmation = confirm('Are you sure you want to delete this employee?');
+    if (confirmation) {
+      this.gqlService.deleteEmployee(id).subscribe(() => {
+        this.getEmployees(); // Refresh the list after deletion
+      }, (error) => {
+        console.error('Error deleting employee:', error);
+      });
+    }
   }
+
+  
 }

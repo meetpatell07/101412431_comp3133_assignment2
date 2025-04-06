@@ -34,7 +34,7 @@ export class LoginComponent {
           const token = res.data.login.token;
           localStorage.setItem('token', token);
           console.log(token)
-          this.router.navigate(['/employees']);  // Redirect to employees page after successful login
+          this.router.navigate(['/employee-list']);  // Redirect to employees page after successful login
         },
         error: (err) => {
           console.error('Login failed', err);
