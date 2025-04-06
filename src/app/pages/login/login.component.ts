@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { GraphqlService } from '../../services/graphql.service';
 
 @Component({
   selector: 'app-login',
@@ -13,24 +14,32 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private gqlService: GraphqlService
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-
-      // Replace with actual authentication call using GraphQL
-      if (email === 'admin@example.com' && password === 'admin123') {
-        localStorage.setItem('token', 'sample-token');
-        this.router.navigate(['/employees']); // Navigate to employee screen
-      } else {
-        alert('Invalid credentials');
-      }
+      const { username, password } = this.loginForm.value;
+  
+      this.gqlService.login(username, password).subscribe({
+        next: (res: any) => {
+          const token = res.data.login.token;
+          localStorage.setItem('token', token);
+          this.router.navigate(['/employees']);  // Redirect to employees page after successful login
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+          alert('Login failed. Check console.');
+        }
+      });
     }
   }
 }

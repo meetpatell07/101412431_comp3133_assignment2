@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { GraphqlService } from '../../services/graphql.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,9 +14,13 @@ import { CommonModule } from '@angular/common';
 export class SignupComponent {
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private gqlService: GraphqlService
+  ) {
     this.signupForm = this.fb.group({
-      name: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
@@ -23,13 +28,19 @@ export class SignupComponent {
 
   onSignup() {
     if (this.signupForm.valid) {
-      const { name, email, password } = this.signupForm.value;
-
-      // 👇 Replace with actual GraphQL call
-      console.log("Signup Data =>", { name, email, password });
-
-      localStorage.setItem('token', 'sample-signup-token'); // Temporary
-      this.router.navigate(['/login']);
+      const { username, email, password } = this.signupForm.value;
+      
+      this.gqlService.signup(username, email, password).subscribe({
+        next: (res: any) => {
+          const token = res.data.signup.token;  // Store the token if needed
+          localStorage.setItem('token', token);
+          this.router.navigate(['/login']);  // Navigate to login after successful signup
+        },
+        error: (err) => {
+          console.error('Signup failed', err);
+          alert('Signup failed. Check console.');
+        }
+      });
     }
   }
 }
