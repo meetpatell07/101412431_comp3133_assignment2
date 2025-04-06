@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GraphqlService } from '../../../services/graphql.service';
 import { CommonModule } from '@angular/common'; 
+import { FormsModule } from '@angular/forms';  // <-- Import FormsModule here
 
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  imports: [CommonModule],  // Ensure CommonModule is imported here
+  imports: [CommonModule, FormsModule  ],  // Ensure CommonModule is imported here
   styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
@@ -14,6 +15,8 @@ export class EmployeeDetailComponent implements OnInit {
   employeeDetails: any = null;
   loading: boolean = true;
   error: any = null;
+  imageUrl: string = '';  // For manual input of image URL
+
 
   constructor(
     private activatedRoute: ActivatedRoute,

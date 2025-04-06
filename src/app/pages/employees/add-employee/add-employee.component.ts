@@ -25,6 +25,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 })
 export class AddEmployeeComponent {
   addEmployeeForm: FormGroup;
+  selectedImage: File | null = null; // Store selected image file
+
 
   constructor(
     private fb: FormBuilder,
@@ -78,6 +80,13 @@ export class AddEmployeeComponent {
     }
   }
 
+  // Handle image file selection
+  onImageSelect(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImage = file;  // Store the selected image file
+    }
+  }
   onGoBack() {
     this.router.navigate(['/employee-list']);
   }
