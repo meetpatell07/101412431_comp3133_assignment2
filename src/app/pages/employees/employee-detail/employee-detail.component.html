@@ -1,0 +1,27 @@
+<div class="container mt-5" *ngIf="!loading; else loadingTemplate">
+    <h2>Employee Details</h2>
+    <button class="btn btn-secondary" (click)="onGoBack()">Back to Employee List</button>
+  
+    <div *ngIf="error" class="alert alert-danger mt-3">
+      <p>Error loading employee details. Please try again.</p>
+    </div>
+  
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ employeeDetails?.first_name }} {{ employeeDetails?.last_name }}</h5>
+        <p class="card-text"><strong>Email:</strong> {{ employeeDetails?.email }}</p>
+        <p class="card-text"><strong>Designation:</strong> {{ employeeDetails?.designation }}</p>
+        <p class="card-text"><strong>Department:</strong> {{ employeeDetails?.department }}</p>
+        <p class="card-text"><strong>Salary:</strong> ${{ employeeDetails?.salary | number }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loadingTemplate>
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+  

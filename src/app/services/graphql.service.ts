@@ -43,4 +43,91 @@ export class GraphqlService {
       mutation: SIGNUP_MUTATION,
     });
   }
+
+  // Query to fetch all employees
+  getAllEmployees(): Observable<any> {
+    return this.apollo.watchQuery({
+      query: gql`
+        query {
+          getAllEmployees {
+            id
+            first_name
+            last_name
+            email
+            designation
+            department
+          }
+        }
+      `,
+    }).valueChanges;
+  }
+
+  // Query to fetch a specific employee by ID
+  searchEmployeeById(id: string): Observable<any> {
+    return this.apollo.query({
+      query: gql`
+        query {
+          searchEmployeeById(id: "${id}") {
+            first_name
+            last_name
+            email
+            salary
+            designation
+            department
+          }
+        }
+      `,
+    });
+  }
+  
+  // Mutation to add a new employee
+  addEmployee(
+    first_name: string,
+    last_name: string,
+    email: string,
+    gender: string,
+    designation: string,
+    salary: number,
+    date_of_joining: string,
+    department: string,
+    employee_photo: string
+  ): Observable<any> {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation {
+          addEmployee(
+            first_name: "${first_name}"
+            last_name: "${last_name}"
+            email: "${email}"
+            gender: "${gender}"
+            designation: "${designation}"
+            salary: ${salary}
+            date_of_joining: "${date_of_joining}"
+            department: "${department}"
+            employee_photo: "${employee_photo}"
+          ) {
+            id
+            first_name
+            last_name
+            email
+            department
+            designation
+          }
+        }
+      `,
+    });
+  }
+
+  // Mutation to delete an employee by ID
+  deleteEmployee(id: string): Observable<any> {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation {
+          deleteEmployee(id: "${id}")
+        }
+      `,
+    });
+  }
+
+  
 }

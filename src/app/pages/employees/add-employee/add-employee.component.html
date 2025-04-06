@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <h2>Add Employee</h2>
+    <form [formGroup]="addEmployeeForm" (ngSubmit)="onAddEmployee()">
+      <div class="mb-3">
+        <label>First Name</label>
+        <input type="text" formControlName="first_name" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('first_name')?.invalid && addEmployeeForm.get('first_name')?.touched" class="text-danger">
+          First name is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Last Name</label>
+        <input type="text" formControlName="last_name" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('last_name')?.invalid && addEmployeeForm.get('last_name')?.touched" class="text-danger">
+          Last name is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('email')?.invalid && addEmployeeForm.get('email')?.touched" class="text-danger">
+          Valid email is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Gender</label>
+        <select formControlName="gender" class="form-control">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div *ngIf="addEmployeeForm.get('gender')?.invalid && addEmployeeForm.get('gender')?.touched" class="text-danger">
+          Gender is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Designation</label>
+        <input type="text" formControlName="designation" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('designation')?.invalid && addEmployeeForm.get('designation')?.touched" class="text-danger">
+          Designation is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Salary</label>
+        <input type="number" formControlName="salary" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('salary')?.invalid && addEmployeeForm.get('salary')?.touched" class="text-danger">
+          Salary is required and must be greater than 0
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Date of Joining</label>
+        <input type="date" formControlName="date_of_joining" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('date_of_joining')?.invalid && addEmployeeForm.get('date_of_joining')?.touched" class="text-danger">
+          Date of joining is required
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Department</label>
+        <input type="text" formControlName="department" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('department')?.invalid && addEmployeeForm.get('department')?.touched" class="text-danger">
+          Department is required
+        </div>
+      </div>
+  
+      <!-- <div class="mb-3">
+        <label>Profile Picture</label>
+        <input type="file" formControlName="employee_photo" class="form-control" />
+        <div *ngIf="addEmployeeForm.get('employee_photo')?.invalid && addEmployeeForm.get('employee_photo')?.touched" class="text-danger">
+          Profile picture is required
+        </div>
+      </div> -->
+  
+      <button class="btn btn-primary" type="submit" [disabled]="addEmployeeForm.invalid">Add Employee</button>
+    </form>
+  </div>
+  
