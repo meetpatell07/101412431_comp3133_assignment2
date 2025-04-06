@@ -4,12 +4,23 @@ import { Router } from '@angular/router';
 import { GraphqlService } from '../../../services/graphql.service';
 import { CommonModule } from '@angular/common';  // Import CommonModule
 import { ReactiveFormsModule } from '@angular/forms';  // Import ReactiveFormsModule
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css'],
-  imports: [CommonModule, ReactiveFormsModule],  // Add these modules here
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    ReactiveFormsModule // Import ReactiveFormsModule for form handling
+  ],  // Add these modules here
 
 })
 export class AddEmployeeComponent {

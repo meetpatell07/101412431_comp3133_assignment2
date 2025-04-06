@@ -1,56 +1,66 @@
-<form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="first_name">First Name:</label>
-      <input type="text" formControlName="first_name" id="first_name" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('first_name')?.invalid && editEmployeeForm.get('first_name')?.touched" class="text-danger">
+<form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <h2>Edit Employee Details</h2>
+  
+    <!-- First Name -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="first_name" id="first_name" required>
+      <mat-error *ngIf="editEmployeeForm.get('first_name')?.invalid && editEmployeeForm.get('first_name')?.touched">
         First Name is required.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <div class="form-group">
-      <label for="last_name">Last Name:</label>
-      <input type="text" formControlName="last_name" id="last_name" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('last_name')?.invalid && editEmployeeForm.get('last_name')?.touched" class="text-danger">
+    <!-- Last Name -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="last_name" id="last_name" required>
+      <mat-error *ngIf="editEmployeeForm.get('last_name')?.invalid && editEmployeeForm.get('last_name')?.touched">
         Last Name is required.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" formControlName="email" id="email" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('email')?.invalid && editEmployeeForm.get('email')?.touched" class="text-danger">
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" id="email" required>
+      <mat-error *ngIf="editEmployeeForm.get('email')?.invalid && editEmployeeForm.get('email')?.touched">
         Please provide a valid email.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <div class="form-group">
-      <label for="salary">Salary:</label>
-      <input type="number" formControlName="salary" id="salary" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('salary')?.invalid && editEmployeeForm.get('salary')?.touched" class="text-danger">
+    <!-- Salary -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Salary</mat-label>
+      <input matInput type="number" formControlName="salary" id="salary" required>
+      <mat-error *ngIf="editEmployeeForm.get('salary')?.invalid && editEmployeeForm.get('salary')?.touched">
         Salary must be a positive number.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <div class="form-group">
-      <label for="designation">Designation:</label>
-      <input type="text" formControlName="designation" id="designation" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('designation')?.invalid && editEmployeeForm.get('designation')?.touched" class="text-danger">
+    <!-- Designation -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Designation</mat-label>
+      <input matInput formControlName="designation" id="designation" required>
+      <mat-error *ngIf="editEmployeeForm.get('designation')?.invalid && editEmployeeForm.get('designation')?.touched">
         Designation is required.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <div class="form-group">
-      <label for="department">Department:</label>
-      <input type="text" formControlName="department" id="department" required class="form-control">
-      <div *ngIf="editEmployeeForm.get('department')?.invalid && editEmployeeForm.get('department')?.touched" class="text-danger">
+    <!-- Department -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Department</mat-label>
+      <input matInput formControlName="department" id="department" required>
+      <mat-error *ngIf="editEmployeeForm.get('department')?.invalid && editEmployeeForm.get('department')?.touched">
         Department is required.
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
   
-    <button type="submit" class="btn btn-primary" [disabled]="editEmployeeForm.invalid">Save Changes</button>
-    <div>
-        <button (click)="goBack()">Back</button>
+    <!-- Action Buttons -->
+    <div class="form-buttons">
+      <button mat-raised-button color="primary" type="submit" [disabled]="editEmployeeForm.invalid">
+        Save Changes
+      </button>
+      <button mat-button color="accent" (click)="goBack()">Back</button>
     </div>
   </form>
-
   

@@ -1,26 +1,46 @@
 <div class="container mt-5" *ngIf="!loading; else loadingTemplate">
-    <h2 class="h2 font-weight-bold text-dark">Employee Details</h2>
-    <button class="btn btn-secondary mt-3" (click)="onGoBack()">Back to Employee List</button>
-  
-    <div *ngIf="error" class="alert alert-danger mt-3">
-      <p>Error loading employee details. Please try again.</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <!-- Heading -->
+      <h2 class="text-dark font-weight-bold">Employee Details</h2>
+      <!-- Back Button -->
+      <button class="btn btn-outline-primary btn-sm" (click)="onGoBack()">
+        <i class="bi bi-arrow-left"></i> Back to List
+      </button>
     </div>
   
-    <div class="card mt-5 mx-auto" style="max-width: 750px;">
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger mt-3 text-center">
+      <p><strong>Error:</strong> Unable to load employee details. Please try again later.</p>
+    </div>
+  
+    <!-- Employee Details Card -->
+    <div class="card shadow-lg mx-auto" style="max-width: 900px; border-radius: 15px;">
       <div class="card-body">
-        <h5 class="card-title h4">{{ employeeDetails?.first_name }} {{ employeeDetails?.last_name }}</h5>
-        <p class="card-text"><strong>Email:</strong> {{ employeeDetails?.email }}</p>
-        <p class="card-text"><strong>Designation:</strong> {{ employeeDetails?.designation }}</p>
-        <p class="card-text"><strong>Department:</strong> {{ employeeDetails?.department }}</p>
-        <p class="card-text"><strong>Salary:</strong> ${{ employeeDetails?.salary | number }}</p>
-      </div>
-    </div>
-</div>
+        <div class="text-center mb-4">
+          <!-- Employee Name -->
+          <h5 class="card-title h4 text-primary">{{ employeeDetails?.first_name }} {{ employeeDetails?.last_name }}</h5>
+          <p class="card-text text-muted">{{ employeeDetails?.designation }}</p>
+        </div>
   
-<ng-template #loadingTemplate>
-    <div class="d-flex justify-content-center mt-5">
-      <div class="spinner-border text-secondary" role="status">
-        <span class="sr-only">Loading...</span>
+        <!-- Employee Info Section -->
+        <div class="employee-info">
+          <p><strong>Email:</strong> <a href="mailto:{{ employeeDetails?.email }}" class="text-decoration-none text-dark">{{ employeeDetails?.email }}</a></p>
+          <p><strong>Salary:</strong> ${{ employeeDetails?.salary | number }}</p>
+          <p><strong>Designation:</strong> {{ employeeDetails?.designation }}</p>
+          <p><strong>Department:</strong> {{ employeeDetails?.department }}</p>
+          <p><strong>Gender:</strong> {{ employeeDetails?.gender }}</p>
+          <p><strong>Date of Joining:</strong> {{ employeeDetails?.date_of_joining | date:'longDate' }}</p>
+        </div>
       </div>
     </div>
-</ng-template>
+  </div>
+  
+  <!-- Loading Spinner Template -->
+  <ng-template #loadingTemplate>
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+  

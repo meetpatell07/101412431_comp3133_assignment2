@@ -153,5 +153,28 @@ updateEmployee(
   });
 }
 
+// Query to search employees by designation or department
+searchEmployeeByDesignationOrDepartment(
+  designation: string,
+  department: string
+): Observable<any> {
+  const SEARCH_EMPLOYEES = gql`
+    query {
+      searchEmployeeByDesignationOrDepartment(
+        designation: "${designation}",
+        department: "${department}"
+      ) {
+        first_name
+        last_name
+        email
+        designation
+        department
+      }
+    }
+  `;
+  return this.apollo.query({
+    query: SEARCH_EMPLOYEES,
+  });
+}
   
 }

@@ -3,12 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // Import CommonModule
 import { ReactiveFormsModule } from '@angular/forms';  // Import ReactiveFormsModule
 import { Router } from '@angular/router';  // Import Router for navigation
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
   styleUrls: ['./edit-employee.component.css'],
-  imports: [CommonModule, ReactiveFormsModule],  // Add these modules here
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],  // Add these modules here
 })
 export class EditEmployeeComponent implements OnInit {
 
