@@ -1,9 +1,15 @@
+// src/app/services/auth.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
-  constructor() { }
+  logout(): void {
+    localStorage.removeItem('token');
+  }
 }
