@@ -1,16 +1,16 @@
 {
   "version": 2,
+  "public": true,
   "builds": [
     {
-      "src": "dist/101412431_comp3133_assignment2/browser/",
+      "src": "dist/101412431-comp3133-assignment2/browser/index.html",
       "use": "@vercel/static"
     }
   ],
-
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/101412431_comp3133_assignment2/browser/index.html"
+      "dest": "dist/101412431-comp3133-assignment2/browser/index.html"
     }
   ]
 }
