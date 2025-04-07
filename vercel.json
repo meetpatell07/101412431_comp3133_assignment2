@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/101412431-comp3133-assignment2/browser/**",
+      "src": "dist/101412431-lab-test2-comp3133/server/server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/101412431-lab-test2-comp3133/browser/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/101412431-comp3133-assignment2/browser/index.html"
+      "dest": "/dist/101412431-lab-test2-comp3133/browser/$1"
     }
   ]
 }
