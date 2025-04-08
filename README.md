@@ -1,59 +1,90 @@
-# 101412431Comp3133Assignment2
+# **COMP3133 Full Stack Assignment**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## **Project Overview**
 
-## Development server
+This project is a full-stack application built using **Express**, **Apollo Server**, **MongoDB**, and **GraphQL**. It implements a GraphQL API for managing scheduling and worker-related functionalities, including employee availability, time-off requests, user management, and more.
 
-To start a local development server, run:
+### **Technologies Used**
 
-```bash
-ng serve
-```
+- **Frontend**: React (if applicable, mention any frontend details)
+- **Backend**:
+  - **Node.js** with **Express**
+  - **Apollo Server** for GraphQL API
+  - **MongoDB** for database management
+  - **JWT Authentication** for secure user login and authorization
+- **GraphQL**: Used to handle complex queries and mutations related to employee scheduling, time-off requests, and user management.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### **Features**
 
-## Code scaffolding
+- **GraphQL API** for handling scheduling, time-off requests, and user management.
+- **Employee Availability**: Employees can view and create their availability schedules.
+- **Time-Off Requests**: Employees can request time off, which can be approved/rejected by managers.
+- **User Management**: Admins can create, delete, and manage users (HR, Manager, Employee roles).
+- **Real-time Chat** (optional): Allows users to send messages in groups or privately using **Socket.io** (if implemented).
+- **JWT Authentication**: Secure user login and protected routes based on roles (Employee, HR, Manager, etc.).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## **Installation**
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### **1. Clone the repository**
 
 ```bash
-ng build
+git clone https://github.com/your-username/your-project-name.git
+cd your-project-name
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+### **2.  Install dependencies**
 ```bash
-ng test
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### **3. Set up environment variables**
 ```bash
-ng e2e
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/mydatabase
+JWT_SECRET=your_jwt_secret_key
+PORT=4000
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### **2. Run the project locally**
+```bash
+npm start
+```
 
-## Additional Resources
+## **API Endpoints**
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The backend exposes a **GraphQL API** at the following endpoint:
+
+- **GraphQL API**: `http://localhost:4000/graphql`
+
+You can interact with the GraphQL API using a tool like **Apollo Studio** or **Postman** to test queries and mutations.
+
+### **Sample Queries**
+
+1. **Get All Employees** (for HR/Managers):
+
+```graphql
+query {
+  getAllUsers {
+    id
+    name
+    role
+    email
+  }
+}
+```
+## **Deployment**
+
+### **Vercel**
+
+To deploy the application using Vercel, follow these steps:
+
+1. **Install the Vercel CLI**:
+
+   ```bash
+   npm install -g vercel
+   ```
+2. **Deploy the app**:
+
+    ```bash
+    vercel --prod
+    ```
+3. **Visit the deployment URL**
