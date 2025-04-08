@@ -1,19 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/101412431-lab-test2-comp3133/server/server.mjs",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/101412431-lab-test2-comp3133/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/101412431-lab-test2-comp3133/browser/index.html"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
